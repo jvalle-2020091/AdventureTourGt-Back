@@ -1,0 +1,33 @@
+{
+  "name": "adventuretourgt-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvalle-2020091/AdventureTourGt-Back.git"
+  },
+  "author": "Josue Valle",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "helmet": "^5.0.2",
+    "jwt-simple": "^0.5.6",
+    "moment": "^2.29.1",
+    "mongoose": "^6.2.7"
+  },
+  "bugs": {
+    "url": "https://github.com/jvalle-2020091/AdventureTourGt-Back/issues"
+  },
+  "homepage": "https://github.com/jvalle-2020091/AdventureTourGt-Back#readme"
+}
