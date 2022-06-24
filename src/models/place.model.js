@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const placeSchema = Schema({
     name: String,
     description: String,
+    image: String,
     location: String,
     stockTicket: Number,
     priceTicket: Number
