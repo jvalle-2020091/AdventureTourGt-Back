@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const invoiceSchema = Schema ({
+const invoiceSchema = mongoose.Schema ({
     date: Date,
     serialNumber: String,
     user: {type: mongoose.Schema.ObjectId, ref: 'User'},

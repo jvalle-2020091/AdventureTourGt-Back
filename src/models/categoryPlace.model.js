@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const categoryPlaceSchema = Schema ({
+const categoryPlaceSchema = mongoose.Schema ({
     name: String,
     description: String,
     image: String,

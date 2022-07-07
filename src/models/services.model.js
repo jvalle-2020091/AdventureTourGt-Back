@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const servicesSchema = Schema ({
+const servicesSchema = mongoose.Schema ({
     name: String,
     description: String,
 });
