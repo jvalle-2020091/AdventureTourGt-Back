@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 
 const tourSchema = mongoose.Schema({
+    date: Date,
     name: String,
     duration: String,
     stockTicket: Number,
