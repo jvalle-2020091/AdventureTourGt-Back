@@ -6,6 +6,12 @@ const helmet = require('helmet');
 const cors = require('cors');
 
 const userRoutes = require('../src/routes/user.routes');
+const shoppCartRoutes = require('../src/routes/shoppCart.routes');
+const placeRoutes = require('../src/routes/place.routes');
+const serviceRoutes = require('../src/routes/service.routes');
+const categoryPlaceRoutes = require ('../src/routes/categoryPlace.routes');
+const tourRoutes = require('../src/routes/tour.routes');
+
 
 
 const app = express(); //instancia
@@ -16,6 +22,12 @@ app.use(helmet());
 app.use(cors());
 
 app.use('/user', userRoutes);
+app.use('/shoppCart', shoppCartRoutes);
+app.use('/place', placeRoutes);
+app.use('/service', serviceRoutes);
+app.use('/categoryPlace', categoryPlaceRoutes);
+app.use('/tour', tourRoutes);
+
 
 
 module.exports = app;

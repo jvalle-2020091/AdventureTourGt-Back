@@ -2,6 +2,8 @@
 
 const User = require('../models/user.model');
 const bcrypt = require('bcrypt-nodejs');
+const Service = require('../models/services.model');
+
 
 exports.validateData = (data) =>{
     let keys = Object.keys(data), msg = '';
@@ -89,3 +91,78 @@ exports.checkUpdateAdmin = async(params)=>{
     }
 }
 
+exports.validExtension = async (ext, filePath)=>{
+    try{
+        if( ext == 'png' ||
+            ext == 'jpg' ||
+            ext == 'jpeg' ||
+            ext == 'gif'){
+            return true;
+        }else{
+            fs.unlinkSync(filePath);
+            return false;
+        }
+    }catch(err){
+        console.log(err);
+        return err;
+    }
+}
+
+
+//-------------------------Servicios--------------------------------
+exports.searchService = async(name)=>{
+    try{
+        const service = await Service.findOne({name: name}).lean();
+        if(!service){
+            return false;
+        }else{
+            return service;
+        }
+    }catch(err){
+        console.log(err);
+        return err;
+    }
+}
+
+exports.alreadyService = async (name)=>{
+    try{
+     let exist = Service.findOne({name:name}).lean()
+     return exist;
+    }catch(err){
+        return err;
+    }
+ }  
+
+//-----------------Tour--------------------------
+exports.checkUpdateTour = async (tour) => {
+    if (tour.priceTicket ||
+        Object.entries(tour).length === 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+//---------------------CategoryPlace------------------------
+exports.searchCategoryPlace = async(name)=>{
+    try{
+        const categoryplace = await categoryPlace.findOne({name: name}).lean();
+        if(!categoryplace){
+            return false;
+        }else{
+            return categoryplace;
+        }
+    }catch(err){
+        console.log(err);
+        return err;
+    }
+}
+
+exports.alreadycategoryPlace = async (name)=>{
+    try{
+     let exist = categoryPlace.findOne({name:name}).lean()
+     return exist;
+    }catch(err){
+        return err;
+    }
+ }  
