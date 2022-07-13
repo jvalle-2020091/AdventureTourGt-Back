@@ -6,11 +6,11 @@ const api = express.Router();
 const mdAuth = require('../services/authenticated');
 
 api.get('/test', serviceController.test);
-api.post('/saveService', mdAuth.isAdmin, serviceController.addService);
-api.put('/updateService/:id',  mdAuth.isAdmin,  serviceController.updateService);
-api.delete('/deleteService/:id',  mdAuth.isAdmin, serviceController.deleteService);
-api.get('/getService/:id', [mdAuth.ensureAuth, mdAuth.isAdmin],serviceController.getService);
-api.get('/getServices',[mdAuth.ensureAuth, mdAuth.isAdmin],  serviceController.getServices);
+api.post('/saveService', [mdAuth.ensureAuth, mdAuth.isAdmin],   serviceController.addService);
+api.put('/updateService/:id',  [mdAuth.ensureAuth, mdAuth.isAdmin],    serviceController.updateService);
+api.delete('/deleteService/:id',  [mdAuth.ensureAuth, mdAuth.isAdmin],   serviceController.deleteService);
+api.get('/getService/:id', mdAuth.ensureAuth,serviceController.getService);
+api.get('/getServices', mdAuth.ensureAuth,  serviceController.getServices);
 
 
 module.exports = api; 

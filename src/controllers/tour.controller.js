@@ -10,7 +10,7 @@ exports.test = (req, res) => {
 };
 
 //  ----------------------- Agregar Tour --------------------
-exports.addTour = (req, res) => {
+exports.addTour = async (req, res) => {
     try {
         const params = req.body;
         const data = {
@@ -26,7 +26,7 @@ exports.addTour = (req, res) => {
         if (msg) return res.status(400).send(msg);
 
         // Verificar la existencia del lugar
-        const placeExist = await Place.findOne({ _id: params.Place });
+        const placeExist = await Place.findOne({ _id: params.place });
         if (!placeExist) return res.status(404).send({ message: 'Tour not found' });
 
         // Verificar la existencia del servicion
@@ -46,7 +46,7 @@ exports.addTour = (req, res) => {
 }
 
 // ------------------------------ Acualizar Tour --------------------------
-exports.updateTour = (req, res) => {
+exports.updateTour = async  (req, res) => {
     try {
         // Capturar ID
         const tourId = req.params.id;

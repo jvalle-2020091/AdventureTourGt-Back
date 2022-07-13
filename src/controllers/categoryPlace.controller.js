@@ -15,22 +15,23 @@ exports.addCategoryPlace = async (req, res) => {
     const data = {
         name: params.name,
         description: params.description,
-        
     }
     const msg = validate.validateData(data);
     if(!msg){
+        
+        const checkCategory = await categoryP.findOne({ name: data.name }).lean()
+        if (checkCategory != null) return res.status(400).send({ message: 'Ya existe una categoria con este nombre' });
+
         const catPlace = new categoryP(data);
         await catPlace.save();
-        return res.send({ message: 'Category Created Successfully', catPlace})
+        return res.send({ message: 'Category created successfully', catPlace})
     } else {
         return res.status(400).send(msg);
     }
-
     }catch(err){
         console.log(err);
         return res.status(500).send({ err, message: 'Failed to save Category Place'});
     }
-
 }
 
 exports.updateCategoryPlace = async (req, res) =>{
@@ -43,14 +44,13 @@ exports.updateCategoryPlace = async (req, res) =>{
     const categoryPlaceExist = await categoryP.findOne({ _id: categoryPlaceId});
     if(!categoryPlaceExist)
     return res.send({ message: 'Category not found'});
-    const  alreadyCategoryPlace = await validate.searchCategoryPlace(params.name);
-    if(alreadyCategoryPlace && categoryPlaceExist.name != alreadyCategoryPlace.name)
-     return res.send({message: 'Category already taken'});
-    
-    const updateCatePlace = await categoryP.findOneAndUpdate ({ _id: categoryPlaceId}, params, {new: true});
-        if(!updateCatePlace)
-            return res.send({ message: 'Category not Update'})
 
+    const checkCategory = await categoryP.findOne({ name: params.name }).lean()
+        if (checkCategory != null) return res.status(400).send({ message: 'Ya existe una categoria con este nombre' });
+
+    const updateCategoryPlace = await categoryP.findByIdAndUpdate({_id: categoryPlaceId}, params, {new: true}).lean();
+    if(!updateCategoryPlace) return res.send({messaage: 'CategoryPlace dont exist or not updated'});
+    return res.send({message: 'CategoryPlace updated successfully', updateCategoryPlace});
 
     }catch(err){
         console.log(err);
@@ -64,7 +64,7 @@ exports.deleteCategoryPlace = async (req, res) => {
     try{
         const categoryId = req.params.id;
         const categoryExist = await categoryP.findOne({ _id: categoryId})
-        if (!categoryExist) return res.send({ message: 'Category not found already deleted'});
+        if (!categoryExist) return res.send({ message: 'Category not found or already deleted'});
         const categoryDeleted = await categoryP.findOneAndDelete({ _id: categoryId});
         if(!categoryDeleted) return res.send({message: 'Category not deleted or already deleted'});
         return res.send({message: 'Category Deleted successfully', categoryDeleted});

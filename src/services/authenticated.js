@@ -25,7 +25,7 @@ exports.ensureAuth = (req, res, next)=>{
 exports.isAdmin = async (req, res, next)=>{
     try{
         const enterprise = req.enterprise;
-        if(enterprise.role === 'ADMIN-APP') return next();
+        if(enterprise.role === 'ADMIN') return next();
         else return res.status(403).send({message: 'User is unauthorized'});
     }catch(err){
         console.log(err);

@@ -6,7 +6,7 @@ const express = require('express');
 const api = express.Router();
 
 //RUTAS PÚBLICAS
-api.get('/testProduct', productController.testProduct);
+api.get('/testProduct', tourController.test);
 
 //RUTAS PRIVADAS 
 

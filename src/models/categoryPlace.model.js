@@ -6,7 +6,9 @@ const categoryPlaceSchema = mongoose.Schema ({
     name: String,
     description: String,
     image: String,
-    place: [{ type: mongoose.Schema.ObjectId, ref: 'place'}]
+    places: [
+        { type: mongoose.Schema.ObjectId, ref: 'place'}
+    ]
 });
 
 module.exports = mongoose.model('categoryPlace', categoryPlaceSchema);

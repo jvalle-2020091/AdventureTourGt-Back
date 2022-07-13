@@ -1,6 +1,7 @@
 'use strict'
 
 const Place = require('../models/place.model');
+const Category = require('../models/categoryPlace.model');
 const { checkPermission, validateData, checkUpdate, validExtension } = require('../utils/validate');
 
 
@@ -8,6 +9,7 @@ const { checkPermission, validateData, checkUpdate, validExtension } = require('
 
 exports.savePlace = async (req, res)=>{
     try{
+        const categoryPlaceId = req.params.id;
         const params = req.body;
         const data = {
             name: params.name,
@@ -16,9 +18,19 @@ exports.savePlace = async (req, res)=>{
         }
         const msg = validateData(data);
         if(!msg){
+
+            const categoryPlaceExist = await Category.findOne({ _id: categoryPlaceId})
+            if(!categoryPlaceExist) return res.status(400).send({message: 'This category does not exist'});
+
+            const checkPlace = await Place.findOne({ name: data.name }).lean()
+            if (checkPlace != null) return res.status(400).send({ message: 'Ya existe un lugar con este nombre' });
+
             const place = new Place(data);
-            await place.save();
-            return res.send({message: 'Place Saved'});
+            const placeSaved = await place.save();
+            await Category.findOneAndUpdate({_id: categoryPlaceId}, 
+                {$push:
+                    {places: placeSaved._id}})
+            return res.send({message: 'Place saved succesfully', place});
         }else return res.status(400).send(msg);
     }catch(err){
         console.log(err);
@@ -30,11 +42,32 @@ exports.savePlace = async (req, res)=>{
 
 exports.getPlaces = async(req, res)=>{
     try{    
-        const places = await Place.find();
-        return res.send({places});
+        const categoryPlaceId = req.params.id;
+        const categoryPlaces = await Category.findOne({_id: categoryPlaceId}).populate('places');
+        return res.send({places: categoryPlaces.places});
     }catch(err){
         console.log(err);
         return err
+    }
+}
+
+//---------------------Ver lugar ----------------------
+exports.getPlace = async (req, res) =>{
+    try{
+        const categoryPlaceId = req.params.idCategory;
+        const placeId = req.params.id;
+
+        const category = await Category.findOne({_id: categoryPlaceId});
+        if(!category) return res.send({ message: 'place not found en esta categoria'})
+
+        const place = await Place.findOne({ _id: placeId});
+        if(!place) return res.send({ message: 'place not found'})
+        
+            return res.send({ message: 'Place Found', place});
+        
+    }catch(err){
+        console.log(err);
+        return res.status(500).send({ message: 'Error getting Category'});
     }
 }
 
@@ -42,14 +75,20 @@ exports.getPlaces = async(req, res)=>{
 
 exports.updatePlace = async(req, res)=>{
     try{
+        const categoryPlaceId = req.params.idCategory;
         const placeId = req.params.id;
         const params = req.body;
+        if(Object.entries(params).length === 0)
+        return res.status(400).send({message: 'Empty parameters'});
 
-        const checkPlace = await  Place.findOne({_id: placeId}).populate('place');
+        const categoryPlaceExist = await Category.findOne({_id: categoryPlaceId });
+        if(!categoryPlaceExist) return res.send({message: 'Category not found'});
+
+        const checkPlace = await  Place.findOne({_id: placeId});
         if(checkPlace == null)return res.status(400).send({message: 'You cant update this place'});
 
         const check = await Place.findOne({name: params.name}).lean()
-        if(check === false) return res.status(400).send({message: 'A place with the same name already exists'});
+        if(check != null) return res.status(400).send({message: 'A place with the same name already exists'});
 
         const updatePlace = await Place.findByIdAndUpdate({_id: placeId}, params, {new: true}).lean();
         if(!updatePlace) return res.send({messaage: 'Place dont exist or not updated'});
@@ -61,12 +100,21 @@ exports.updatePlace = async(req, res)=>{
 }
 
 
+
+
 //-----------------Eliminar Lugar-----------------
 
 
 exports.deletePlace = async(req, res)=>{
     try{
+        const categoryPlaceId = req.params.idCategory;
         const placeId = req.params.id;
+
+        const categoryPlaceExist = await Category.findOne({_id: categoryPlaceId });
+        if(!categoryPlaceExist) return res.send({message: 'Category not found'});
+
+        const removePlace = await Category.findOneAndUpdate({_id: categoryPlaceId}, {$pull:{places: placeId}});
+        if(!removePlace) return res.status(500).send({message: 'Error removing contact'});
 
         const placeDeleted = await Place.findOneAndDelete({_id: placeId});
         if(!placeDeleted) return res.status(500).send({message: 'Place not found or already deleted'});

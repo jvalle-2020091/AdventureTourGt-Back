@@ -1,0 +1,597 @@
+{
+	"info": {
+		"_postman_id": "e83f306c-2b74-4e66-a304-0baa827ef447",
+		"name": "AdventureTourGt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19445628"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "localhost:3200/user/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "ADMIN",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3200/user/register Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Josue",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "jvalle",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "jvalle@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/user/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CategoryPlace",
+			"item": [
+				{
+					"name": "saveCategoryPlace",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Maya",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Lugares turisticos de los mayas",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/categoryPlace/saveCategoryPlace",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"categoryPlace",
+								"saveCategoryPlace"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCategoryPlace",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "maya5",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/categoryPlace/updateCategoryPlace/62ce1c6ba1828f8010ade7a5",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"categoryPlace",
+								"updateCategoryPlace",
+								"62ce1c6ba1828f8010ade7a5"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCategoryPlace",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/categoryPlace/deleteCategoryPlace/62ce1c6ba1828f8010ade7a5",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"categoryPlace",
+								"deleteCategoryPlace",
+								"62ce1c6ba1828f8010ade7a5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCategoryPlace",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/categoryPlace/getCategory/62ce1bb287b333c4b84b02d3",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"categoryPlace",
+								"getCategory",
+								"62ce1bb287b333c4b84b02d3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCategorysPlaces",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/categoryPlace/getCategorys",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"categoryPlace",
+								"getCategorys"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "saveService",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Bebida",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Servicio de bebida",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "75",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/service/saveService",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"service",
+								"saveService"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateService",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "price",
+									"value": "75",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Bebida",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/service/updateService/62ce46e1c791131c1cca3755",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"service",
+								"updateService",
+								"62ce46e1c791131c1cca3755"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteService",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/service/deleteService/62ce46e1c791131c1cca3755",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"service",
+								"deleteService",
+								"62ce46e1c791131c1cca3755"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getServices",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/service/getServices",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"service",
+								"getServices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getService",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/service/getService/62ce4f7b23026d49d0b31729",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"service",
+								"getService",
+								"62ce4f7b23026d49d0b31729"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Places",
+			"item": [
+				{
+					"name": "savePlace",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Kaminal juyu",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "sitio ocupado durante más de 2,000 años, Su ocupación se inicia a finales del período Preclásíco Temprano",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "Calzada San Juan 30 avenida zona 7, Guatemala, Ciudad.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/place/savePlace/62ce275b45dd8f4b5b80eff3",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"place",
+								"savePlace",
+								"62ce275b45dd8f4b5b80eff3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePlace",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/place/deletePlace/62ce275b45dd8f4b5b80eff3/62ce2ceb121dbc6f2eff84a3",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"place",
+								"deletePlace",
+								"62ce275b45dd8f4b5b80eff3",
+								"62ce2ceb121dbc6f2eff84a3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePlace",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Kaminal juyu",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/place/updatePlace/62ce275b45dd8f4b5b80eff3/62ce2d4d4f55753dec2615a5",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"place",
+								"updatePlace",
+								"62ce275b45dd8f4b5b80eff3",
+								"62ce2d4d4f55753dec2615a5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPlacesByCategory",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/place/getPlacesByCategory/62ce275b45dd8f4b5b80eff3",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"place",
+								"getPlacesByCategory",
+								"62ce275b45dd8f4b5b80eff3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPlace",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc2NzQ1MzEsImV4cCI6MTY1Nzc2MDkzMX0.Gsv0eo25wvUriPvqhZ0-yJhbSueJDTdN-qVo-Kj6wGk\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/place/getPlaceByCategory/62ce275b45dd8f4b5b80eff3/62ce2d4d4f55753dec2615a5",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"place",
+								"getPlaceByCategory",
+								"62ce275b45dd8f4b5b80eff3",
+								"62ce2d4d4f55753dec2615a5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tours",
+			"item": []
+		},
+		{
+			"name": "ShoppCart",
+			"item": []
+		}
+	]
+}
