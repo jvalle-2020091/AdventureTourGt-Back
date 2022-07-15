@@ -836,7 +836,7 @@
 								},
 								{
 									"key": "quantity",
-									"value": "15",
+									"value": "5",
 									"type": "text"
 								}
 							]
@@ -875,6 +875,31 @@
 							"path": [
 								"shoppCart",
 								"deleteShoppCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "confirmShoppCart",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc4NDk1NTIsImV4cCI6MTY1NzkzNTk1Mn0.YsA_LMkvDbFcDk6FCQQvr7epS93c8LLXrfIiDgIIMU0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/shoppCart/confirmShoppCart",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"shoppCart",
+								"confirmShoppCart"
 							]
 						}
 					},
