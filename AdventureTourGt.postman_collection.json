@@ -587,11 +587,300 @@
 		},
 		{
 			"name": "Tours",
-			"item": []
+			"item": [
+				{
+					"name": "saveTour",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc4MzU0NDIsImV4cCI6MTY1NzkyMTg0Mn0.T0zDYL0hVkOik8V_WxAg52FKspfluMcjTFgRjbj6lK0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "place",
+									"value": "62ce277945dd8f4b5b80eff7",
+									"type": "text"
+								},
+								{
+									"key": "services",
+									"value": "62ce4666c791131c1cca3751",
+									"type": "text"
+								},
+								{
+									"key": "services",
+									"value": "62ce4f7b23026d49d0b31729",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "02-02-22",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "tour a tikal",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "3 dias",
+									"type": "text"
+								},
+								{
+									"key": "stockTicket",
+									"value": "15",
+									"type": "text"
+								},
+								{
+									"key": "priceTicket",
+									"value": "50",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/tour/saveTour",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"tour",
+								"saveTour"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTours",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc4MzU0NDIsImV4cCI6MTY1NzkyMTg0Mn0.T0zDYL0hVkOik8V_WxAg52FKspfluMcjTFgRjbj6lK0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/tour/getTours",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"tour",
+								"getTours"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTour",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc4MzU0NDIsImV4cCI6MTY1NzkyMTg0Mn0.T0zDYL0hVkOik8V_WxAg52FKspfluMcjTFgRjbj6lK0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/tour/deleteTour/62d0912f3a93f42810756d39",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"tour",
+								"deleteTour",
+								"62d0912f3a93f42810756d39"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toursByPlaces",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc4MzU0NDIsImV4cCI6MTY1NzkyMTg0Mn0.T0zDYL0hVkOik8V_WxAg52FKspfluMcjTFgRjbj6lK0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:3200/tour/tourByPlace/62ce277945dd8f4b5b80eff7",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"tour",
+								"tourByPlace",
+								"62ce277945dd8f4b5b80eff7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTour",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc4MzU0NDIsImV4cCI6MTY1NzkyMTg0Mn0.T0zDYL0hVkOik8V_WxAg52FKspfluMcjTFgRjbj6lK0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/tour/getTour/62d09a42f1195ff91e7853f9",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"tour",
+								"getTour",
+								"62d09a42f1195ff91e7853f9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTour",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc4MzU0NDIsImV4cCI6MTY1NzkyMTg0Mn0.T0zDYL0hVkOik8V_WxAg52FKspfluMcjTFgRjbj6lK0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "services",
+									"value": "62ce4666c791131c1cca3751",
+									"type": "text"
+								},
+								{
+									"key": "services",
+									"value": "62ce4666c791131c1cca3751",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/tour/updateTour/62ce277945dd8f4b5b80eff7/62d09a42f1195ff91e7853f9",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"tour",
+								"updateTour",
+								"62ce277945dd8f4b5b80eff7",
+								"62d09a42f1195ff91e7853f9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "ShoppCart",
-			"item": []
+			"item": [
+				{
+					"name": "addShoppCart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc4NDIwOTgsImV4cCI6MTY1NzkyODQ5OH0.TzQcUW9QHUqglxXcaUshytIKZkvGgvPVy9BRyF35VpI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "tour",
+									"value": "62d09a42f1195ff91e7853f9",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "15",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/shoppCart/addShoppCart",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"shoppCart",
+								"addShoppCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteShoppCart",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MmNlMTllZmI1M2RjNjIwYzA5MzY2NWUiLCJuYW1lIjoiQURNSU4iLCJ1c2VybmFtZSI6IkFETUlOIiwicGFzc3dvcmQiOiIkMmEkMTAka1E1Z0xyZXk5RTg3NHJkL2k1c21BLi95OE5iQTBsREc1Yi9BM3RuclBHeGdLZmJCczU1VXkiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NTc4NDIwOTgsImV4cCI6MTY1NzkyODQ5OH0.TzQcUW9QHUqglxXcaUshytIKZkvGgvPVy9BRyF35VpI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/shoppCart/deleteShoppCart",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"shoppCart",
+								"deleteShoppCart"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
