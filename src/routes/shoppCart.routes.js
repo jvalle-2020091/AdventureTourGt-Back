@@ -12,6 +12,6 @@ api.get('/testShoppCart', ShoppCartController.testShoppingCart);
 //CLIENT
 api.post('/addShoppCart', mdAuth.ensureAuth, ShoppCartController.addToShoppingCart);
 api.delete('/deleteShoppCart', mdAuth.ensureAuth, ShoppCartController.deleteShoppCart);
-api.get('/getShoppCart/:id', mdAuth.ensureAuth, ShoppCartController.getShoppCart);
+api.get('/confirmShoppCart', mdAuth.ensureAuth, ShoppCartController.confirmShoppCart);
 
 module.exports = api;

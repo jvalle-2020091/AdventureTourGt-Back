@@ -27,6 +27,7 @@ exports.addToShoppingCart = async(req, res)=>{
             const data = {
                 user: req.user.sub
             }
+
             const tour = {
                 tour: params.tour,
                 quantity: params.quantity,
@@ -36,9 +37,10 @@ exports.addToShoppingCart = async(req, res)=>{
             data.quantityTours = 1;
             data.total = tour.subTotal;
 
+            //Se descuenta el numero de stockTickets en Tour
             const stockTour = (tourExist.stockTicket - tour.quantity)         
-            await Tour.findOneAndUpdate({_id: data.tour}, {stockTicket: stockTour }, {new: true});
-        
+            await Tour.findOneAndUpdate({_id: tour.tour}, {stockTicket: stockTour }, {new: true});
+    
            
             const shoppingCart = new ShoppingCart(data);
             await shoppingCart.save();
@@ -66,9 +68,9 @@ exports.addToShoppingCart = async(req, res)=>{
                 {new: true}
             )
 
-            
+            //Se descuenta el numero de stockTickets en Tour
             const stockTour = (tourExist.stockTicket - tour.quantity)         
-            await Tour.findOneAndUpdate({_id: data.tour}, {stockTicket: stockTour }, {new: true});
+            await Tour.findOneAndUpdate({_id: tour.tour}, {stockTicket: stockTour }, {new: true});
 
            
 
@@ -86,9 +88,9 @@ exports.deleteShoppCart = async(req, res)=>{
           const userId = req.user.sub;
         let cleanShoppingCart = await ShoppingCart.findOneAndRemove({ user: userId }).lean();
         if (cleanShoppingCart === null) {
-            return res.send({ message: 'No tienes ningun producto en tú carrito' })
+            return res.send({ message: 'No tienes ningun tour en tú carrito' })
         } else {
-            return res.send({ message: 'Se han removido los productos de tu carrito' });
+            return res.send({ message: 'Se han removido los tours de tu carrito' });
         }
     }catch(err){
         console.log(err);
@@ -96,14 +98,17 @@ exports.deleteShoppCart = async(req, res)=>{
     }
 }
 
-exports.getShoppCart = async(req, res)=>{
-    try{
-        const shoppCartId = req.params.id;
-        const shoppCart = await ShoppingCart.findOne({_id: shoppCartId});
-        if(!shoppCart) return res.status(404).send({message: 'Shopping cart not found'});
-        return res.send({message: 'Shopping cart found:', shoppCart});
-    }catch(err){
+exports.confirmShoppCart = async (req, res) => {
+    try {
+        const userId = req.user.sub;
+        let shoppingCartPreview = await ShoppingCart.findOne({ user: userId }).populate('tours.tour').lean();
+        if (shoppingCartPreview === null) {
+            return res.send({ message: 'No tienes ningun tour en tú carrito' })
+        } else {
+            return res.send({ shoppingCartPreview });
+        }
+    } catch (err) {
         console.log(err);
-        return res.status(500).send({err, message: 'Error getting shopping cart'});
+        return err;
     }
 }

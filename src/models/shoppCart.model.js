@@ -6,7 +6,7 @@ const shoppingCartSchema = mongoose.Schema ({
     user: {type: mongoose.Schema.ObjectId, ref: 'User'},
     tours: [
         {
-            tour: {type: mongoose.Schema.ObjectId, ref: 'Tour'},
+            tour: {type: mongoose.Schema.ObjectId, ref: 'tour'},
             quantity: Number,
             subTotal: Number 
         }
