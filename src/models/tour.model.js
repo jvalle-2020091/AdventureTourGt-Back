@@ -11,7 +11,7 @@ const tourSchema = mongoose.Schema({
     // id de el lugar que pertenece el tour
     place: {type: mongoose.Schema.ObjectId, ref: 'place' },
     // Servicios que incluye el tour
-    services: [{type: mongoose.Schema.ObjectId, ref: 'service'}]
+    services: [{type: mongoose.Schema.ObjectId, ref: 'services'}]
 });
 
 module.exports = mongoose.model('tour', tourSchema);

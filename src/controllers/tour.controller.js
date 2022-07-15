@@ -15,22 +15,26 @@ exports.addTour = async (req, res) => {
         const params = req.body;
         const data = {
             place: params.place,
-            service: params.service,
+            services: params.services,
             date: params.date,
             name: params.name,
             duration: params.duration,
             stockTicket: params.stockTicket,
-            priceTicket: 0
+            priceTicket: params.priceTicket
         }
         const msg = Validate.validateData(data);
         if (msg) return res.status(400).send(msg);
+
+        //Verificar si ya existe el tour por el nombre 
+        const checkTour = await Tour.findOne({ name: data.name }).lean()
+            if (checkTour != null) return res.status(400).send({ message: 'Ya existe una tour con este nombre' });
 
         // Verificar la existencia del lugar
         const placeExist = await Place.findOne({ _id: params.place });
         if (!placeExist) return res.status(404).send({ message: 'Tour not found' });
 
         // Verificar la existencia del servicion
-        const checkService = await Service.findOne({ _id: data.service }); // agruegue ;
+        const checkService = await Service.findOne({ _id: data.services }); // agruegue ;
         if (!checkService)
             return res.status(400).send({ message: 'Service not found' });
 
@@ -49,6 +53,7 @@ exports.addTour = async (req, res) => {
 exports.updateTour = async  (req, res) => {
     try {
         // Capturar ID
+        const placeId = req.params.idPlace;
         const tourId = req.params.id;
         const params = req.body;
 
@@ -58,18 +63,18 @@ exports.updateTour = async  (req, res) => {
             return res.status(400).send({ message: 'Not sending params to update or params cannot update' });
 
         // Validar que exitsta el lugar
-        const placeExist = await Place.findOne({ _id: params.place });
+        const placeExist = await Place.findOne({ _id: placeId });
         if (!placeExist) return res.send({ message: 'Place not found' });
 
         // Validar que exitsta el servicio
-        const serviceExist = await Service.findOne({ _id: params.service });
+        const serviceExist = await Service.findOne({ _id: params.services });
         if (!serviceExist) return res.send({ message: 'Service not found' });
 
         // validar que exista el tour 
         const tourUpdated = await Tour.findOneAndUpdate({ _id: tourId }, params, { new: true })
             .lean()
             .populate('place')
-            .populate('service');
+            .populate('services');
 
         if (!tourUpdated) return res.send({ message: 'Tour does not exist or tour not updated' });
 
@@ -90,7 +95,7 @@ exports.deleteTour = async (req, res) => {
         const tourDeleted = await Tour.findOneAndDelete({ _id: tourId })
             .lean()
             .populate('place')
-            .populate('service');
+            .populate('services');
 
         //Verificar la eliminación
         if (!tourDeleted) return res.status(404).send({ message: 'Tour not found or already deleted' });
@@ -108,7 +113,7 @@ exports.getTours = async (req, res) => {
         const tours = await Tour.find()
             .lean()
             .populate('place')
-            .populate('service');
+            .populate('services');
         return res.send({ message: 'Tours found:', tours });
 
     } catch (err) {
@@ -127,7 +132,7 @@ exports.getTour = async (req, res) => {
         const tour = await Tour.findOne({ _id: tourId })
             .lean()
             .populate('place')
-            .populate('service');
+            .populate('services');
         if (!tour) return res.status(404).send({ message: 'Tour not found' });
 
         return res.send({ message: 'Tour found:', tour });
@@ -144,7 +149,7 @@ exports.exhaustedTour = async (req, res) => {
         const toursExhausted = await Tour.find({ stockTicket: 0 })
             .lean()
             .populate('place')
-            .populate('service');
+            .populate('services');
         return res.send({ tours: toursExhausted});
 
     } catch (err) {
@@ -170,7 +175,7 @@ exports.mostSales = async (req, res) => {
 }
 
 // ------------------------------ Buscar Tours por nombre --------------------------
-exports.searchTour = async (req, res) => {
+/*exports.searchTour = async (req, res) => {
     try {
         const params = req.body;
         const data = {
@@ -192,7 +197,7 @@ exports.searchTour = async (req, res) => {
         console.log(err);
         return res.status(500).send({ err, message: 'Error searching tours' });
     }
-}
+}*/
 
 // ------------------------------ Buscar Tours por Lugar --------------------------
 exports.tourByPlace = async (req, res) => {
@@ -208,7 +213,7 @@ exports.tourByPlace = async (req, res) => {
         const tours = await Tour.find({ place: placeId })
             .lean()
             .populate('place')
-            .populate('service');
+            .populate('services');
 
         return res.send({ place: placeExist.name, tours: tours });
 

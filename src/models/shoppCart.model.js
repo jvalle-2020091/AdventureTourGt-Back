@@ -2,17 +2,17 @@
 
 const mongoose = require('mongoose');
 
-const shoppCartSchema = mongoose.Schema ({
+const shoppingCartSchema = mongoose.Schema ({
     user: {type: mongoose.Schema.ObjectId, ref: 'User'},
-    tickets: [
+    tours: [
         {
-            place: {type: mongoose.Schema.ObjectId, ref: 'place'},
+            tour: {type: mongoose.Schema.ObjectId, ref: 'Tour'},
             quantity: Number,
             subTotal: Number 
         }
     ],
-    quantityPlaces: Number,
+    quantityTours: Number,
     total: Number
 });
 
-module.exports = mongoose.model('shoppCart', shoppCartSchema);
+module.exports = mongoose.model('ShoppingCart', shoppingCartSchema);

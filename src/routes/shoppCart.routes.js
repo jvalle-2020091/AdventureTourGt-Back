@@ -10,8 +10,8 @@ api.get('/testShoppCart', ShoppCartController.testShoppingCart);
 
 //RUTAS PRIVADAS
 //CLIENT
-api.post('/addShoppCart', mdAuth.ensureAuth, ShoppCartController.addShoppCart);
-api.delete('/deleteShoppCart/:id', mdAuth.ensureAuth, ShoppCartController.deleteShoppCart);
+api.post('/addShoppCart', mdAuth.ensureAuth, ShoppCartController.addToShoppingCart);
+api.delete('/deleteShoppCart', mdAuth.ensureAuth, ShoppCartController.deleteShoppCart);
 api.get('/getShoppCart/:id', mdAuth.ensureAuth, ShoppCartController.getShoppCart);
 
 module.exports = api;
