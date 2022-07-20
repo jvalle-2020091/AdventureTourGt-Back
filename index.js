@@ -19,11 +19,11 @@ app.listen(port, async () => {
         role: 'ADMIN'
     };
 
-        const verificarAdmin = await User.findOne({name:'Admin de la aplicación creado'}).lean();
+        const verificarAdmin = await User.findOne({name:'ADMIN'}).lean();
         if (verificarAdmin)
-        {console.log('Admin de la aplicación creado')}
+        {console.log('ADMIN de la aplicación ya creado')}
         else{
         let user = new User(dataAdmin);
         await user.save();
-        console.log('Admin de la aplicación creado')}
+        console.log('Se creó el ADMIN de la aplicación')}
 });

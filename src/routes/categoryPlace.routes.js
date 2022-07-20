@@ -14,7 +14,7 @@ api.post('/saveCategoryPlace', [mdAuth.ensureAuth, mdAuth.isAdmin], categoryPlac
 api.put('/updateCategoryPlace/:id',  [mdAuth.ensureAuth, mdAuth.isAdmin], categoryPlaceController.updateCategoryPlace);
 api.delete('/deleteCategoryPlace/:id', [mdAuth.ensureAuth, mdAuth.isAdmin], categoryPlaceController.deleteCategoryPlace);
 api.get('/getCategory/:id', mdAuth.ensureAuth, categoryPlaceController.getCategory );
-api.get('/getCategorys', mdAuth.ensureAuth, categoryPlaceController.getCategorys)
+api.get('/getCategorys',  categoryPlaceController.getCategorys)
 
 
 
