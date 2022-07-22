@@ -14,7 +14,6 @@ exports.addService = async (req, res) => {
         const data = {
             name: params.name,
             description: params.description,
-            price: params.price
         }
         const msg = validate.validateData(data);
         if (!msg) {

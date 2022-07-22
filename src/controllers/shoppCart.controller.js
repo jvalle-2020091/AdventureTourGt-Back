@@ -3,6 +3,7 @@
 const ShoppingCart = require('../models/shoppCart.model');
 const Tour = require('../models/tour.model');
 const validate = require('../utils/validate');
+const Place = require('../models/place.model');
 
 exports.testShoppingCart = (req, res)=>{
     return res.send({message: 'Function testShoppingCart is running'});
@@ -21,9 +22,10 @@ exports.addToShoppingCart = async(req, res)=>{
         if(msg) return res.status(400).send(msg);
         const shoppingCartExist = await ShoppingCart.findOne({user: userId});
         const tourExist = await Tour.findOne({_id: params.tour});
-        if(!tourExist) return res.send({message: 'Tour not found'});
+        if(!tourExist) return res.status(400).send({message: 'Tour not found'});
         if(!shoppingCartExist){
-            if(params.quantity > tourExist.stockTicket) return res.send({message: 'Stock Tour not available'});
+            if(params.quantity > tourExist.stockTicket ) return res.status(400).send({message: 'Stock Tour not available'});
+            if(params.quantity <=  0 ) return res.status(400).send({message: 'You have to add more than 0 tickets'});
             const data = {
                 user: req.user.sub
             }
@@ -47,12 +49,13 @@ exports.addToShoppingCart = async(req, res)=>{
             return res.send({message: 'Tour add successfully', shoppingCart});
         }else{
             //actualizar el carrito
-            if(params.quantity > tourExist.stockTicket) return res.send({message: 'Stock Tour not available'})
-            for(let tour of shoppingCartExist.tours){
-                console.log(tour);
+            if(params.quantity > tourExist.stockTicket) return res.status(400).send({message: 'Stock Tour not available'})
+            if(params.quantity <= 0 ) return res.status(400).send({message: 'You have to add more than 0 tickets'});
+
+          /*  for(let tour of shoppingCartExist.tours){
                 if(tour.tour != params.tour) continue; 
-                return res.send({message: 'Already have this tour in the shopping cart'});
-            }
+                return res.status(400).send({message: 'Already have this tour in the shopping cart'});
+            }*/
             const tour = {
                 tour: params.tour,
                 quantity: params.quantity,
@@ -66,15 +69,15 @@ exports.addToShoppingCart = async(req, res)=>{
                   total: total,
                   quantityTours: quantityTours},
                 {new: true}
-            )
+            ).populate('tours.tour')
 
             //Se descuenta el numero de stockTickets en Tour
             const stockTour = (tourExist.stockTicket - tour.quantity)         
             await Tour.findOneAndUpdate({_id: tour.tour}, {stockTicket: stockTour }, {new: true});
 
-           
+        
 
-            if(!pushTour) return res.send({message: 'Tour not add to shopping cart'});
+            if(!pushTour) return res.status(400).send({message: 'Tour not add to shopping cart'});
             return res.send({message: 'New tour add to Shopping Cart', pushTour});
         }
     }catch(err){
