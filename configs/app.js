@@ -11,6 +11,7 @@ const placeRoutes = require('../src/routes/place.routes');
 const serviceRoutes = require('../src/routes/service.routes');
 const categoryPlaceRoutes = require ('../src/routes/categoryPlace.routes');
 const tourRoutes = require('../src/routes/tour.routes');
+const invoiceRoutes = require('../src/routes/invoice.routes'); 
 
 
 
@@ -27,6 +28,7 @@ app.use('/place', placeRoutes);
 app.use('/service', serviceRoutes);
 app.use('/categoryPlace', categoryPlaceRoutes);
 app.use('/tour', tourRoutes);
+app.use('/invoice', invoiceRoutes)
 
 
 

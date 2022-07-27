@@ -13,5 +13,7 @@ api.get('/testShoppCart', ShoppCartController.testShoppingCart);
 api.post('/addShoppCart', mdAuth.ensureAuth, ShoppCartController.addToShoppingCart);
 api.delete('/deleteShoppCart', mdAuth.ensureAuth, ShoppCartController.deleteShoppCart);
 api.get('/confirmShoppCart', mdAuth.ensureAuth, ShoppCartController.confirmShoppCart);
+api.delete('/deleteTourShoppCart/:id', mdAuth.ensureAuth, ShoppCartController.deleteTourShoppCart);
+
 
 module.exports = api;

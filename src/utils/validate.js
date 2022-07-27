@@ -3,6 +3,7 @@
 const User = require('../models/user.model');
 const bcrypt = require('bcrypt-nodejs');
 const Service = require('../models/services.model');
+const Invoice = require('../models/invoice.model');
 
 
 exports.validateData = (data) =>{
@@ -135,7 +136,7 @@ exports.alreadyService = async (name)=>{
 
 //-----------------Tour--------------------------
 exports.checkUpdateTour = async (tour) => {
-    if (tour.priceTicket ||
+    if (
         Object.entries(tour).length === 0) {
         return false;
     } else {
@@ -166,3 +167,22 @@ exports.alreadycategoryPlace = async (name)=>{
         return err;
     }
  }  
+
+  //---------------------shopingCart------------
+exports.shoppCart = async (shoppCart) => {
+    if (shoppCart.priceTicket ||
+        Object.entries(shoppCart).length === 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+ //------------------------invoice-----------------
+ exports.alreadyInvoice = async ( shoppCart)=>{
+    try{
+     let exist = Invoice.findOne({  shoppCart:shoppCart }).lean()
+     return exist;
+    }catch(err){
+        return err;
+    }
+}

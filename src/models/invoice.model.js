@@ -2,20 +2,26 @@
 
 const mongoose = require('mongoose');
 
-const invoiceSchema = mongoose.Schema ({
-    date: Date,
-    serialNumber: String,
-    user: {type: mongoose.Schema.ObjectId, ref: 'User'},
-    nit: String,
-    tickets: [
-        {
-            place: {type: mongoose.Schema.ObjectId, ref: 'place'},
+const invoiceSchema = mongoose.Schema({
+
+    NIT: String,
+    name: String,
+    date: String,
+    numberInvoice: String,
+    //client: String,
+    NIT: String,
+    user: {type:mongoose.Schema.ObjectId, ref: 'user'},
+    tours: 
+    [{
+            tour: {type:mongoose.Schema.ObjectId, ref: 'tour'}, 
             quantity: Number,
-            subTotal: Number 
-        }
-    ],
-    quantityPlaces: Number,
-    total: Number
+            subTotal: Number
+//price: Number,
+            //subTotalProduct: Number
+    }],
+    IVA: Number,
+    subTotal: Number,
+    total: Number,
 });
 
 module.exports = mongoose.model('invoice', invoiceSchema)

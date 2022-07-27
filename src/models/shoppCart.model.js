@@ -12,6 +12,8 @@ const shoppingCartSchema = mongoose.Schema ({
         }
     ],
     quantityTours: Number,
+    IVA: Number,
+    subTotal: Number,
     total: Number
 });
 
