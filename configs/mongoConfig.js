@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 exports.init = ()=>{
   //linea de conexión
-  const uriMongo = 'mongodb://127.0.0.1:27017/AdventureTourGT';
+  const uriMongo = 'mongodb+srv://jvalle:123@adventuretourgt.jc2xp.mongodb.net/?retryWrites=true&w=majority'; // 'mongodb://127.0.0.1:27017/AdventureTourGT';
   mongoose.Promise = global.Promise;
 
   //manejar el ciclo de vida de la conexión

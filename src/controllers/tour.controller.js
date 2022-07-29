@@ -26,6 +26,18 @@ exports.addTour = async (req, res) => {
         const msg = Validate.validateData(data);
         if (msg) return res.status(400).send(msg);
 
+          //validación de fecha
+          let dateActual = new Date(data.date   
+            )
+          if (dateActual == 'Invalid Date') {
+              return res.status(400).send({ message: 'The date are not valid' })
+          } else {
+              let today = new Date().toISOString().split("T")[0]
+              today = new Date(today)
+              let differenceToday = dateActual.getTime() - today.getTime()
+              if (differenceToday < 0) 
+                  return res.status(400).send({ message: 'Enter a date that has not passed' })
+
         //Verificar si ya existe el tour por el nombre 
         const checkTour = await Tour.findOne({ name: data.name }).lean()
             if (checkTour != null) return res.status(400).send({ message: 'Ya existe una tour con este nombre' });
@@ -43,7 +55,7 @@ exports.addTour = async (req, res) => {
         const tour = new Tour(data);
         await tour.save();
         return res.send({ message: 'Tour saved successfully', tour });
-
+          }
     } catch (err) {
         console.log(err);
         return res.status(500).send({ err, message: 'Error saving Tour' });
@@ -63,6 +75,18 @@ exports.updateTour = async  (req, res) => {
         if (checkUpdate === false)
             return res.status(400).send({ message: 'Not sending params to update or params cannot update' });
 
+             //validación de fecha
+          let dateActual = new Date(params.date   
+            )
+          if (dateActual == 'Invalid Date') {
+              return res.status(400).send({ message: 'The date are not valid' })
+          } else {
+              let today = new Date().toISOString().split("T")[0]
+              today = new Date(today)
+              let differenceToday = dateActual.getTime() - today.getTime()
+              if (differenceToday < 0) 
+                  return res.status(400).send({ message: 'Enter a date that has not passed' })
+
         // Validar que exitsta el lugar
         const placeExist = await Place.findOne({ _id: placeId });
         if (!placeExist) return res.send({ message: 'Place not found' });
@@ -80,6 +104,7 @@ exports.updateTour = async  (req, res) => {
         if (!tourUpdated) return res.send({ message: 'Tour does not exist or tour not updated' });
 
         return res.send({ message: 'Tour updated successfully', tourUpdated });
+          }
     } catch (err) {
         console.log(err);
         return res.status(500).send({ err, message: 'Error updateTour on Tour' });

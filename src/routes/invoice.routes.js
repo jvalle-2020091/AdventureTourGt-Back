@@ -11,6 +11,6 @@ const upload = connectMultiparty({ uploadDir: './pdfs'});
 api.get('/test', invoiceController.test);
 api.get('/getInvoice/:id', mdAuth.ensureAuth, invoiceController.getInvoice);
 api.post('/addInvoice', mdAuth.ensureAuth, invoiceController.addInvoice);
-
+api.get('/getInvoices', [mdAuth.ensureAuth, mdAuth.isAdmin], invoiceController.getInvoices)
 
 module.exports = api;

@@ -106,7 +106,7 @@ exports.delete = async (req, res) => {
         const userId = req.user.sub;
 
         const checkRole = await User.findOne({ _id: userId })
-        if (checkRole.role === 'ADMIN-HOTEL' && checkRole.role === 'ADMIN-HOTEL') {
+        if (checkRole.role === 'ADMIN') {
             return res.status(403).send({ message: 'No puede eliminar usuarios de rol ADMIN' });
         } else {
             // await rooms.deleteMany({ user: userId })

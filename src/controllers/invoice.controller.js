@@ -10,45 +10,6 @@ exports.test = (req, res) => {
     return res.send({ message: 'The function test is running.' });
 }
 
-/*exports.addInvoice = async (req, res) => {
-    try {
-        const userId = req.user.sub;
-        const shoppCart = req.params.id;
-        const invoices = await Invoice.count().lean();
-        const params = req.body;
-        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        const date = new Date();
-        const data = {
-            date: date.toLocaleDateString('es-ES', options),
-            serial: invoices + 1000,
-            shoppCart: req.params.id,
-            NIT: params.NIT
-        }
-        if (params.NIT == '' || params.NIT == undefined || params.NIT == null) {
-            data.NIT = 'C/F'
-        }
-
-        const msg = validate.validateData(data);
-        if (msg) return res.status(400).send(msg);
-        //Verificar que no exista ya una factura en ese carrito
-        let invoiceExist = await validate.alreadyInvoice(data.shoppCart);
-        if (invoiceExist) return res.status(400).send({ message: 'This shoppCarts already has an invoice' });
-        //Verificar que exista shoppCarts
-        const checkShoppCart = await ShoppCart.findOne({ _id: shoppCart });
-        if (checkShoppCart === null || checkShoppCart.id != shoppCart)
-            return res.status(400).send({ message: 'shoppCart not exist' });
-
-        data.name = params.name
-
-        const invoice = new Invoice(data);
-        await invoice.save();
-        return res.send({ message: 'Invoice created successfully', invoice, checkShoppCart });
-
-    } catch (err) {
-        console.log(err);
-        return res.status(500).send({ err, message: 'Error saving ShoppCart in tour' });
-    }
-}*/
 
 exports.addInvoice = async (req, res)=>
 {
@@ -93,6 +54,10 @@ exports.addInvoice = async (req, res)=>
 
         const invoice = new Invoice(shoppingCartData);
         await invoice.save();
+
+         //Se descuenta el numero de stockTickets en Tour
+         const stockTour = (tour.stockTicket - tourQuantity)
+         await Tour.findOneAndUpdate({ _id: setTour }, { stockTicket: stockTour }, { new: true });
         
         const cleanShoppingCart = await ShoppCart.findOneAndDelete({_id:shoppingCartExist._id});
         const updateInvoice = await Invoice.findOne({_id:invoice._id});
@@ -123,6 +88,23 @@ exports.getInvoice = async (req, res) => {
         return res.status(500).send({ err, message: 'Error of get tour' });
     }
 }
+
+exports.getInvoices = async (req, res) => {
+    try{
+        const invoices = await Invoice.find().populate('tours.tour');
+        if (!invoices) {
+            return res.send({ message: 'Invoices not found' });
+        } else {
+            return res.send({ messsage: 'Invoices found:', invoices });
+        }
+
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send({ err, message: 'Error of get invoices' });
+    }
+}
+
+
 
 
 
